@@ -4,14 +4,17 @@ namespace Controllers;
 
 use Models\Author;
 use System\View;
+use Models\authorService;
 
 class authorController
 {
     public function actionAll()
     {
         $model = new Author();
+        $authorSer = new authorService($model->getNameDB());
 
-        $data = $model->showAll();
+        $data = $authorSer->showAllAuthors();
+
         try {
             View::render('listAuthor', [
                 'data' => $data,
@@ -29,15 +32,17 @@ class authorController
             $name = $_POST['name'];
 
             $model = new Author();
-            $data["id"] = $model->addAuthor($name);
+            $authorSer = new authorService($model->getNameDB());
 
-            if(isset($data["id"])){
-                $data["message_success"] = "Автор успешно добавлен.";
+            $data["id"] = $authorSer->addAuthor($name);
+
+            if(isset($data["id"])&&($data["id"] > 0)){
+                $data["messageSuccess"] = "Автор успешно добавлен.";
             } else {
-                $data["message_fail"] = "Произошла ошибка записи в БД.";
+                $data["messageFail"] = "Произошла ошибка записи в БД.";
             }
         } elseif(isset($_POST['name'])&&($_POST['name'] == '')) {
-            $data["message_fail"] = "Вы не указали ФИО автора.";
+            $data["messageFail"] = "Вы не указали ФИО автора.";
         }
         try {
             View::render('newAuthor', [

@@ -7,10 +7,10 @@ try {
     echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
 }?>
 
-<?php if($data&&isset($data['message_fail'])){ ?>
-        <p style="color:red"><?= $data['message_fail'];?></p>
-<?php } elseif($data&&isset($data['message_success'])) { ?>
-        <p style="color:green"><?= $data['message_success'];?></p>
+<?php if($data&&isset($data['messageFail'])){ ?>
+        <p style="color:red"><?= $data['messageFail'];?></p>
+<?php } elseif($data&&isset($data['messageSuccess'])) { ?>
+        <p style="color:green"><?= $data['messageSuccess'];?></p>
 <?php }?>
 
 <form action='/book/create' method='POST'>

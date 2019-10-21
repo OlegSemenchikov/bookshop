@@ -4,6 +4,8 @@ namespace Controllers;
 
 use System\View;
 use Models\Book;
+use Models\bookService;
+
 
 class bookController
 {
@@ -11,8 +13,10 @@ class bookController
     public function actionAll()
     {
         $model = new Book();
+        $bookSer = new bookService($model->getNameDB());
 
-        $data = $model->showAll();
+        $data = $bookSer->showAllBooks();
+
         try {
             View::render('listBooks', [
                 'data' => $data,
@@ -30,15 +34,17 @@ class bookController
             $title = $_POST['title'];
 
             $model = new Book();
-            $data["id"] = $model->createBook($title);
+            $bookSer = new bookService($model->getNameDB());
 
-            if(isset($data["id"])){
-                $data["message_success"] = "Книга успешно добавлена.";
+            $data["id"] = $bookSer->addBook($title);
+
+            if(isset($data["id"])&&($data["id"] > 0)){
+                $data["messageSuccess"] = "Книга успешно добавлена.";
             } else {
-                $data["message_fail"] = "Произошла ошибка записи в БД.";
+                $data["messageFail"] = "Произошла ошибка записи в БД.";
             }
         } elseif(isset($_POST['title'])&&($_POST['title'] == '')) {
-            $data["message_fail"] = "Вы не указали Заголовок книги.";
+            $data["messageFail"] = "Вы не указали Заголовок книги.";
         }
         try {
             View::render('newBook', [

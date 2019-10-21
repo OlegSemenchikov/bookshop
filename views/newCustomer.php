@@ -1,4 +1,4 @@
-<h2>Добавление нового автора</h2>
+<h2>Добавление нового покупателя</h2>
 
 <?php use System\View;
 try {
@@ -13,7 +13,7 @@ try {
     <p style="color:green"><?= $data['messageSuccess'];?></p>
 <?php }?>
 
-<form action='/author/create' method='POST'>
+<form action='/customer/create' method='POST'>
     <p>ФИО атора книги:<br />
         <input type='text' name='name' style='width:420px;'>
     </p>
@@ -21,3 +21,4 @@ try {
         <input type='submit' name='button' value='Добавить'>
     </p>
 </form>
+

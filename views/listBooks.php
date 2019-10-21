@@ -1,6 +1,7 @@
 <h2>Список всех книг</h2>
 
 <?php //debug($data);?>
+
 <?php use System\View;
 try {
     View::render('topMenuAdmin');
@@ -11,6 +12,7 @@ try {
 
 <div>
     <?php if(count($data)>0){
+
         $i = 0;
         foreach ($data as $item): ?>
             <div>

@@ -2,7 +2,7 @@
 
 <div class="main-page">
     <p>
-        <strong>Добро пожаловать на главную книжного online-магазиина</strong>
+        <strong>Добро пожаловать на главную книжного online-магазина</strong>
     </p>
 
 </div>

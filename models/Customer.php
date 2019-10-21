@@ -1,12 +1,13 @@
 <?php
+
 namespace Models;
 
-class Author
+class Customer
 {
     protected $nameDB;
 
     public function __construct() {
-        $this->nameDB = 'author';
+        $this->nameDB = 'customer';
     }
 
     public function getNameDB()
