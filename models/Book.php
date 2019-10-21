@@ -1,14 +1,10 @@
 <?php
-
-
 namespace Models;
-
 
 class Book
 {
     protected $db_connect;
     protected $name_db;
-
 
     public function __construct() {
 

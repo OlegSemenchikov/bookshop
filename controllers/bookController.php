@@ -35,7 +35,7 @@ class bookController
             if(isset($data["id"])){
                 $data["message_success"] = "Книга успешно добавлена.";
             } else {
-                $data["message_fail"] = "Вы не указали Заголовок книги.";
+                $data["message_fail"] = "Произошла ошибка записи в БД.";
             }
         } elseif(isset($_POST['title'])&&($_POST['title'] == '')) {
             $data["message_fail"] = "Вы не указали Заголовок книги.";

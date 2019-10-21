@@ -1,6 +1,12 @@
 <h2>Список всех книг</h2>
 
-    <?php //debug($data);?>
+<?php //debug($data);?>
+<?php use System\View;
+try {
+    View::render('topMenuAdmin');
+}catch (\ErrorException $e) {
+    echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
+}?>
 
 
 <div>

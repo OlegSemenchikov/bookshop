@@ -28,7 +28,7 @@ class adminController
             Логин и пароль должны храниться в БД, причем пароль должен быть захеширован.
             */
             if($login=="admin" && $password=="12345"){
-                $data["login_status"] = "access_granted";
+                $data["message_success"] = "Авторизация прошла успешно.";
                 session_start();
                 $_SESSION['admin'] = $login;
 
@@ -40,7 +40,7 @@ class adminController
                     echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
                 }
             } else {
-                $data["login_status"] = "access_denied";
+                $data["message_fail"] = "Логин и/или пароль введены неверно.";
                 $this->actionMain($data);
             }
         }
