@@ -2,18 +2,21 @@
 
 namespace Controllers;
 
-use Models\Author;
 use System\View;
-use Models\authorService;
+use Models\Author\authorService;
 
 class authorController
 {
+    protected $authorSer;
+
+    function __construct()
+    {
+        $this->authorSer= new authorService();
+    }
+
     public function actionAll()
     {
-        $model = new Author();
-        $authorSer = new authorService($model->getNameDB());
-
-        $data = $authorSer->showAllAuthors();
+        $data = $this->authorSer->showAllAuthors();
 
         try {
             View::render('listAuthor', [
@@ -31,10 +34,7 @@ class authorController
         if(isset($_POST['name'])&&($_POST['name'] != '')) {
             $name = $_POST['name'];
 
-            $model = new Author();
-            $authorSer = new authorService($model->getNameDB());
-
-            $data["id"] = $authorSer->addAuthor($name);
+            $data["id"] = $this->authorSer->createNewAuthor($name);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Автор успешно добавлен.";

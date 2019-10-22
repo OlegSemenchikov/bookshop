@@ -1,7 +1,7 @@
 <?php
 namespace System;
 
-class adapterDB
+class DB
 {
     public static $dsn = 'mysql:dbname=bookshop;host=localhost';
     public static $user = 'root';

@@ -2,18 +2,21 @@
 
 namespace Controllers;
 
-use Models\Customer;
 use System\View;
-use Models\customerService;
+use Models\Customer\customerService;
 
 class customerController
 {
+    protected $customerSer;
+
+    function __construct()
+    {
+        $this->customerSer= new customerService();
+    }
+
     public function actionAll()
     {
-        $model = new Customer();
-        $customerSer = new customerService($model->getNameDB());
-
-        $data = $customerSer->showAllcustomers();
+        $data = $this->customerSer->showAllCustomers();
 
         try {
             View::render('listCustomer', [
@@ -31,10 +34,7 @@ class customerController
         if(isset($_POST['name'])&&($_POST['name'] != '')) {
             $name = $_POST['name'];
 
-            $model = new Customer();
-            $customerSer = new customerService($model->getNameDB());
-
-            $data["id"] = $customerSer->addCustomer($name);
+            $data["id"] = $this->customerSer->createNewCustomer($name);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Покупатель успешно добавлен.";
