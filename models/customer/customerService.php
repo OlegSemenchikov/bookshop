@@ -12,15 +12,15 @@ class customerService
     }
     public function showAllCustomers()
     {
-        $arrBooks = $this->customerAdp->selectAllCustomers();
+        $arrCustomers = $this->customerAdp->selectAllCustomers();
 
-        return $arrBooks;
+        return $arrCustomers;
     }
 
-    public function createNewCustomer($name)
+    public function createNewCustomer(Customer $objC)
     {
-        $idNewBook = $this->customerAdp->addCustomer($name);
+        $idNewCustomer = $this->customerAdp->addCustomer($objC->getName());
 
-        return $idNewBook;
+        return $idNewCustomer;
     }
 }

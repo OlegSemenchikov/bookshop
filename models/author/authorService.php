@@ -12,15 +12,15 @@ class authorService
     }
     public function showAllAuthors()
     {
-        $arrBooks = $this->authorAdp->selectAllAuthors();
+        $arrAuthors = $this->authorAdp->selectAllAuthors();
 
-        return $arrBooks;
+        return $arrAuthors;
     }
 
-    public function createNewAuthor($name)
+    public function createNewAuthor(Author $objA)
     {
-        $idNewBook = $this->authorAdp->addAuthor($name);
+        $idNewAuthor = $this->authorAdp->addAuthor($objA->getName());
 
-        return $idNewBook;
+        return $idNewAuthor;
     }
 }

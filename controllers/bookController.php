@@ -2,16 +2,19 @@
 
 namespace Controllers;
 
+use Models\Book\Book;
 use System\View;
 use Models\Book\bookService;
 
 
 class bookController
 {
-    protected $bookSer;
+    public $objBook;
+    public $bookSer;
 
     function __construct()
     {
+        $this->objBook= new Book();
         $this->bookSer= new bookService();
     }
 
@@ -35,7 +38,9 @@ class bookController
         if(isset($_POST['title'])&&($_POST['title'] != '')) {
             $title = $_POST['title'];
 
-            $data["id"] = $this->bookSer->createNewBook($title);
+            $this->objBook->setTitle($title);
+
+            $data["id"] = $this->bookSer->createNewBook($this->objBook);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Книга успешно добавлена.";

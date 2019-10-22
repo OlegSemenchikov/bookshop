@@ -2,15 +2,18 @@
 
 namespace Controllers;
 
+use Models\Author\Author;
 use System\View;
 use Models\Author\authorService;
 
 class authorController
 {
-    protected $authorSer;
+    public $objAuthor;
+    public $authorSer;
 
     function __construct()
     {
+        $this->objAuthor= new Author();
         $this->authorSer= new authorService();
     }
 
@@ -33,8 +36,8 @@ class authorController
         $data = [];
         if(isset($_POST['name'])&&($_POST['name'] != '')) {
             $name = $_POST['name'];
-
-            $data["id"] = $this->authorSer->createNewAuthor($name);
+            $this->objAuthor->setName($name);
+            $data["id"] = $this->authorSer->createNewAuthor($this->objAuthor);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Автор успешно добавлен.";

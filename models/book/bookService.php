@@ -17,9 +17,9 @@ class bookService
         return $arrBooks;
     }
 
-    public function createNewBook($title)
+    public function createNewBook(Book $objB)
     {
-        $idNewBook = $this->bookAdp->addBook($title);
+        $idNewBook = $this->bookAdp->addBook($objB->getTitle());
 
         return $idNewBook;
     }

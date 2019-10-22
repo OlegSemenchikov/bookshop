@@ -2,15 +2,18 @@
 
 namespace Controllers;
 
+use Models\Customer\Customer;
 use System\View;
 use Models\Customer\customerService;
 
 class customerController
 {
-    protected $customerSer;
+    public $objCustomer;
+    public $customerSer;
 
     function __construct()
     {
+        $this->objCustomer= new Customer();
         $this->customerSer= new customerService();
     }
 
@@ -33,8 +36,8 @@ class customerController
         $data = [];
         if(isset($_POST['name'])&&($_POST['name'] != '')) {
             $name = $_POST['name'];
-
-            $data["id"] = $this->customerSer->createNewCustomer($name);
+            $this->objCustomer->setName($name);
+            $data["id"] = $this->customerSer->createNewCustomer($this->objCustomer);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Покупатель успешно добавлен.";
