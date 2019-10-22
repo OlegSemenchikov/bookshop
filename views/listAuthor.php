@@ -15,7 +15,10 @@ try {
         foreach ($data as $item): ?>
             <div>
                 <span><?= ++$i; ?></span>
+                <span><?= $item['surname']; ?></span>
                 <span><?= $item['name']; ?></span>
+                <span><?= $item['patronymic']; ?></span>
+
             </div>
 
             <br/>

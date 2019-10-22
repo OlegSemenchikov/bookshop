@@ -3,7 +3,21 @@ namespace Models\Book;
 
 class Book
 {
+    protected $id;
     protected $title;
+    protected $pages;
+    protected $year;
+    protected $price;
+
+    public function setId($str)
+    {
+        $this->id = $str;
+    }
+
+    public function getId()
+    {
+        return $this->id ;
+    }
 
     public function setTitle($str)
     {
@@ -13,6 +27,36 @@ class Book
     public function getTitle()
     {
         return $this->title ;
+    }
+
+    public function setPages($str)
+    {
+        $this->pages = $str;
+    }
+
+    public function getPages()
+    {
+        return $this->pages ;
+    }
+
+    public function setYear($str)
+    {
+        $this->year = $str;
+    }
+
+    public function getYear()
+    {
+        return $this->year ;
+    }
+
+    public function setPrice($str)
+    {
+        $this->price = $str;
+    }
+
+    public function getPrice()
+    {
+        return $this->price ;
     }
 
 }

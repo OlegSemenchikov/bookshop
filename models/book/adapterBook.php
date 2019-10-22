@@ -23,4 +23,14 @@ class adapterBook
     {
         return DB::add("INSERT INTO `".$this->nameDB."` SET `title` = ?", $title);
     }
+
+    public function selectBook($idBook)
+    {
+        return DB::getRow("SELECT * FROM `".$this->nameDB."` WHERE `id_book` = ?", $idBook);
+    }
+
+    public function updateBook($idBook, $title, $pages, $year, $price)
+    {
+        return DB::set("UPDATE `".$this->nameDB."` SET `title` = ?, `pages` = ?, `year` = ?, `price` = ?  WHERE `id_book` = ?", array($title, $pages, $year, $price, $idBook));
+    }
 }

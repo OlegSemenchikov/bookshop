@@ -23,4 +23,18 @@ class bookService
 
         return $idNewBook;
     }
+
+    public function editBook(Book $objB)
+    {
+        $Book = $this->bookAdp->selectBook($objB->getId());
+
+        return $Book;
+    }
+
+    public function saveBook(Book $objB)
+    {
+        $idNewBook = $this->bookAdp->updateBook($objB->getId(), $objB->getTitle(), $objB->getPages(), $objB->getYear(), $objB->getPrice());
+
+        return $idNewBook;
+    }
 }

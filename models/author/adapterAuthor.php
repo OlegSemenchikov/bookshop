@@ -18,8 +18,8 @@ class adapterAuthor
         return DB::getAll("SELECT * FROM `".$this->nameDB."`");
     }
 
-    public function addAuthor($name)
+    public function addAuthor($surname)
     {
-        return DB::add("INSERT INTO `".$this->nameDB."` SET `name` = ?", $name);
+        return DB::add("INSERT INTO `".$this->nameDB."` SET `surname` = ?", $surname);
     }
 }

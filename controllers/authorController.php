@@ -11,14 +11,9 @@ class authorController
     public $objAuthor;
     public $authorSer;
 
-    function __construct()
-    {
-        $this->objAuthor= new Author();
-        $this->authorSer= new authorService();
-    }
-
     public function actionAll()
     {
+        $this->authorSer= new authorService();
         $data = $this->authorSer->showAllAuthors();
 
         try {
@@ -34,9 +29,13 @@ class authorController
     public function actionCreate()
     {
         $data = [];
-        if(isset($_POST['name'])&&($_POST['name'] != '')) {
-            $name = $_POST['name'];
-            $this->objAuthor->setName($name);
+        if(isset($_POST['surname'])&&($_POST['surname'] != '')) {
+
+            $this->objAuthor= new Author();
+            $this->authorSer= new authorService();
+
+            $surname = $_POST['surname'];
+            $this->objAuthor->setSurname($surname);
             $data["id"] = $this->authorSer->createNewAuthor($this->objAuthor);
 
             if(isset($data["id"])&&($data["id"] > 0)){

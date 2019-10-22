@@ -11,14 +11,9 @@ class customerController
     public $objCustomer;
     public $customerSer;
 
-    function __construct()
-    {
-        $this->objCustomer= new Customer();
-        $this->customerSer= new customerService();
-    }
-
     public function actionAll()
     {
+        $this->customerSer= new customerService();
         $data = $this->customerSer->showAllCustomers();
 
         try {
@@ -35,6 +30,10 @@ class customerController
     {
         $data = [];
         if(isset($_POST['name'])&&($_POST['name'] != '')) {
+
+            $this->objCustomer= new Customer();
+            $this->customerSer= new customerService();
+
             $name = $_POST['name'];
             $this->objCustomer->setName($name);
             $data["id"] = $this->customerSer->createNewCustomer($this->objCustomer);

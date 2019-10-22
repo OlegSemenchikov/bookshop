@@ -19,7 +19,7 @@ class authorService
 
     public function createNewAuthor(Author $objA)
     {
-        $idNewAuthor = $this->authorAdp->addAuthor($objA->getName());
+        $idNewAuthor = $this->authorAdp->addAuthor($objA->getSurname());
 
         return $idNewAuthor;
     }
