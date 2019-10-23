@@ -27,6 +27,18 @@ try {
                 <span><?= (isset($item['pages'])&&($item['pages'] != ""))?("| Количество страниц: ".$item['pages']):''; ?></span>
                 <span><?= (isset($item['year'])&&($item['year'] != ""))?("| Год издания: ".$item['year']):''; ?></span>
                 <span><?= (isset($item['price'])&&($item['price'] != ""))?("| Цена: ".$item['price']):''; ?></span>
+                <?php $n = count($item['arrAuth']);
+                      if($n == 1){?>
+                          <p><span>Автор: <?= $item['arrAuth'][0]['surname']." ".$item['arrAuth'][0]['name']." ".$item['arrAuth'][0]['patronymic'] ; ?></span></p>
+                      <?php } elseif ($n > 1){ ?>
+                          <ol>Авторы:
+                              <?php foreach ($item['arrAuth'] as $val){ ?>
+                              <li><?= $val['surname']." ".$val['name']." ".$val['patronymic'];?></li>
+                              <? } ?>
+                          </ol>
+
+                      <?php };?>
+
                 <form action='/book/edit' method='POST'>
                     <input type='hidden' name='id' value='<?= $item['id_book']; ?>'>
                     <p>

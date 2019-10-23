@@ -17,6 +17,13 @@ class bookService
         return $arrBooks;
     }
 
+    public function showAuthorsBook(Book $objB)
+    {
+        $arrAuthorsBook = $this->bookAdp->selectAuthorsBook($objB->getId());
+
+        return $arrAuthorsBook;
+    }
+
     public function createNewBook(Book $objB)
     {
         $idNewBook = $this->bookAdp->addBook($objB->getTitle(), $objB->getPages(), $objB->getYear(), $objB->getPrice());

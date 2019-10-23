@@ -14,8 +14,16 @@ class bookController
 
     public function actionAll()
     {
+        $this->objBook= new Book();
         $this->bookSer= new bookService();
         $data = $this->bookSer->showAllBooks();
+
+        foreach ($data as $key => $value){
+            $this->objBook->setId($value['id_book']);
+            $arrAuth = $this->bookSer->showAuthorsBook($this->objBook);
+            $value += ['arrAuth'=>$arrAuth];
+            $data[$key] = $value;
+        }
 
         try {
             View::render('listBooks', [
