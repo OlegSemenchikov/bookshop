@@ -72,12 +72,18 @@ class bookController
             $this->objBook->setYear($_POST['year']);
             $this->objBook->setPrice($_POST['price']);
 
-            $data = $this->bookSer->showAllBooks();
-
             $data["idBook"] = $this->bookSer->saveBook($this->objBook);
 
             if(isset($data["idBook"])&&($data["idBook"] > 0)){
                 $data = $this->bookSer->showAllBooks();
+
+                foreach ($data as $key => $value){
+                    $this->objBook->setId($value['id_book']);
+                    $arrAuth = $this->bookSer->showAuthorsBook( $this->objBook);
+                    $value += ['arrAuth'=>$arrAuth];
+                    $data[$key] = $value;
+                }
+
                 $data["messageSuccess"] = "Книга успешно одновлена.";
                 try {
                     View::render('listBooks', [
@@ -95,10 +101,7 @@ class bookController
                 }catch (\ErrorException $e) {
                     echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
                 }
-            }
-
-
-
+            }         
 
         } elseif(isset($_POST['title'])&&($_POST['title'] == '')) {
             $data["messageFail"] = "Вы не указали Заголовок книги.";
