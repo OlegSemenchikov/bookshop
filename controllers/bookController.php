@@ -101,7 +101,7 @@ class bookController
                 }catch (\ErrorException $e) {
                     echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
                 }
-            }         
+            }
 
         } elseif(isset($_POST['title'])&&($_POST['title'] == '')) {
             $data["messageFail"] = "Вы не указали Заголовок книги.";

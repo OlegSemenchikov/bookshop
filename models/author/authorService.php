@@ -19,8 +19,15 @@ class authorService
 
     public function createNewAuthor(Author $objA)
     {
-        $idNewAuthor = $this->authorAdp->addAuthor($objA->getSurname());
+        $idNewAuthor = $this->authorAdp->addAuthor($objA->getSurname(), $objA->getName(), $objA->getPatronymic());
 
         return $idNewAuthor;
+    }
+
+    public function showCountBooksAuthor(Author $objA)
+    {
+        $countBooks = $this->authorAdp->getCountBooks($objA->getId());
+
+        return $countBooks;
     }
 }

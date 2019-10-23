@@ -18,6 +18,7 @@ try {
                 <span><?= $item['surname']; ?></span>
                 <span><?= $item['name']; ?></span>
                 <span><?= $item['patronymic']; ?></span>
+                <span>| Количество книг в магазине: <?= (isset($item['countBooks']))?($item['countBooks']):'0'; ?></span>
 
             </div>
 

@@ -13,16 +13,26 @@ class authorController
 
     public function actionAll()
     {
+        $this->objAuthor= new Author();
         $this->authorSer= new authorService();
         $data = $this->authorSer->showAllAuthors();
 
-        try {
-            View::render('listAuthor', [
-                'data' => $data,
-            ]);
-        }catch (\ErrorException $e) {
-            echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
+        foreach ($data as $key => $value){
+            $this->objAuthor->setId($value['id_author']);
+            $countBooks = $this->authorSer->showCountBooksAuthor($this->objAuthor);
+            $value += ['countBooks'=>$countBooks];
+            $data[$key] = $value;
         }
+
+
+        echo json_encode($data);
+//        try {
+//            View::render('listAuthor', [
+//                'data' => $data,
+//            ]);
+//        }catch (\ErrorException $e) {
+//            echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
+//        }
 
     }
 
@@ -34,8 +44,10 @@ class authorController
             $this->objAuthor= new Author();
             $this->authorSer= new authorService();
 
-            $surname = $_POST['surname'];
-            $this->objAuthor->setSurname($surname);
+            $this->objAuthor->setSurname($_POST['surname']);
+            $this->objAuthor->setName($_POST['name']);
+            $this->objAuthor->setPatronymic($_POST['patronymic']);
+
             $data["id"] = $this->authorSer->createNewAuthor($this->objAuthor);
 
             if(isset($data["id"])&&($data["id"] > 0)){

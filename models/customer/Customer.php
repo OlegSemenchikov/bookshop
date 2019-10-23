@@ -9,6 +9,15 @@ class Customer
     protected $patronymic;
     protected $phone;
 
+    public function setId($str)
+    {
+        $this->id = $str;
+    }
+
+    public function getId()
+    {
+        return $this->id ;
+    }
 
     public function setName($str)
     {

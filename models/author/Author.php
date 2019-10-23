@@ -7,6 +7,16 @@ class Author
     protected $name;
     protected $patronymic;
 
+    public function setId($str)
+    {
+        $this->id = $str;
+    }
+
+    public function getId()
+    {
+        return $this->id ;
+    }
+
     public function setName($str)
     {
         $this->name = $str;
