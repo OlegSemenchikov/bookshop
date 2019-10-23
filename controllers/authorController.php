@@ -8,9 +8,6 @@ use Models\Author\authorService;
 
 class authorController
 {
-    public $objAuthor;
-    public $authorSer;
-
     public function actionAll()
     {
         $this->objAuthor= new Author();
@@ -19,13 +16,21 @@ class authorController
 
         foreach ($data as $key => $value){
             $this->objAuthor->setId($value['id_author']);
-            $countBooks = $this->authorSer->showCountBooksAuthor($this->objAuthor);
-            $value += ['countBooks'=>$countBooks];
+
+            //количество книг
+//            $countBooks = $this->authorSer->showCountBooksAuthor($this->objAuthor);
+//            $value += ['countBooks'=>$countBooks];
+
+            //информация по книгам конкретного автора
+            $arrBooks = $this->authorSer->showBooksAuthor($this->objAuthor);
+            $value += ['arrBooks'=>$arrBooks];
+
             $data[$key] = $value;
         }
 
 
         echo json_encode($data);
+//        debug($data);
 //        try {
 //            View::render('listAuthor', [
 //                'data' => $data,

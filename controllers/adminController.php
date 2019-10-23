@@ -7,7 +7,6 @@ use System\View;
 class adminController
 {
     public function actionMain($data_arr = []){
-
         try {
             View::render('admin', [
                 'data' => $data_arr,
@@ -49,7 +48,5 @@ class adminController
             $data["login_status"] = "";
             $this->actionMain($data);
         }
-
-
     }
 }

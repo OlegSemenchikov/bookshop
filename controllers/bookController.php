@@ -9,9 +9,6 @@ use Models\Book\bookService;
 
 class bookController
 {
-    public $objBook;
-    public $bookSer;
-
     public function actionAll()
     {
         $this->objBook= new Book();

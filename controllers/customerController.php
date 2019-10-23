@@ -8,9 +8,6 @@ use Models\Customer\customerService;
 
 class customerController
 {
-    public $objCustomer;
-    public $customerSer;
-
     public function actionAll()
     {
         $this->customerSer= new customerService();

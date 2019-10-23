@@ -24,6 +24,13 @@ class authorService
         return $idNewAuthor;
     }
 
+    public function showBooksAuthor(Author $objA)
+    {
+        $arrBooksAuthor = $this->authorAdp->selectBooksAuthor($objA->getId());
+
+        return $arrBooksAuthor;
+    }
+
     public function showCountBooksAuthor(Author $objA)
     {
         $countBooks = $this->authorAdp->getCountBooks($objA->getId());

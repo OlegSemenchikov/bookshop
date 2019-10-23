@@ -8,6 +8,7 @@ class Book
     protected $pages;
     protected $year;
     protected $price;
+    protected $arrAuthors;
 
     public function setId($str)
     {
@@ -57,6 +58,18 @@ class Book
     public function getPrice()
     {
         return $this->price ;
+    }
+
+    public function setArrAuthors(array $arrObjAuthors)
+    {
+        foreach ($arrObjAuthors as $key => $objAuthor){
+            $this->arrAuthors[$key] = $objAuthor;
+        }
+    }
+
+    public function getArrAuthors()
+    {
+        return $this->arrAuthors ;
     }
 
 }

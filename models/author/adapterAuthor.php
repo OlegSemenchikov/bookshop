@@ -27,4 +27,10 @@ class adapterAuthor
     {
         return DB::getValue("SELECT COUNT(b_a.id_book) FROM book_author AS b_a WHERE b_a.id_author = ?", $idAuthor);
     }
+
+    public function selectBooksAuthor($idAuthor)
+    {
+        return DB::getAll("SELECT * FROM book AS b WHERE b.id_book  IN (SELECT b_a.id_book FROM book_author AS b_a WHERE b_a.id_author = ?) ORDER BY b.year, b.title ", $idAuthor);
+
+    }
 }
