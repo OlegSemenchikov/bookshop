@@ -67,22 +67,29 @@ class bookController
             $data = $this->bookSer->showAllBooks();
 
             $data["idBook"] = $this->bookSer->saveBook($this->objBook);
-//            debug($data["idBook"]);
-            if(isset($data["id"])&&($data["id"] > 0)){
+
+            if(isset($data["idBook"])&&($data["idBook"] > 0)){
+                $data = $this->bookSer->showAllBooks();
                 $data["messageSuccess"] = "Книга успешно одновлена.";
-//                echo "Книга успешно одновлена.";
+                try {
+                    View::render('listBooks', [
+                        'data' => $data,
+                    ]);
+                }catch (\ErrorException $e) {
+                    echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
+                }
             } else {
-                $data["messageFail"] = "Произошла ошибка записи в БД.";
-//                echo "Произошла ошибка записи в БД.";
+                $data["messageFail"] = "Произошла ошибка записи в БД. Повторите попытку.";
+                try {
+                    View::render('editBook', [
+                        'data' => $data,
+                    ]);
+                }catch (\ErrorException $e) {
+                    echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
+                }
             }
 
-            try {
-                View::render('listBooks', [
-                    'data' => $data,
-                ]);
-            }catch (\ErrorException $e) {
-                echo 'Извините, произошла ошибка: ',  $e->getMessage(), ".\n";
-            }
+
 
 
         } elseif(isset($_POST['title'])&&($_POST['title'] == '')) {
@@ -109,6 +116,9 @@ class bookController
 
             $title = $_POST['title'];
             $this->objBook->setTitle($title);
+            $this->objBook->setPages($_POST['pages']);
+            $this->objBook->setYear($_POST['year']);
+            $this->objBook->setPrice($_POST['price']);
             $data["id"] = $this->bookSer->createNewBook($this->objBook);
 
             if(isset($data["id"])&&($data["id"] > 0)){

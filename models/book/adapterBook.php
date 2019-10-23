@@ -19,9 +19,9 @@ class adapterBook
         return DB::getAll("SELECT * FROM `".$this->nameDB."`");
     }
 
-    public function addBook($title)
+    public function addBook($title, $pages, $year, $price)
     {
-        return DB::add("INSERT INTO `".$this->nameDB."` SET `title` = ?", $title);
+        return DB::add("INSERT INTO `".$this->nameDB."` SET `title` = ?, `pages` = ?, `year` = ?, `price` = ?", array($title, $pages, $year, $price));
     }
 
     public function selectBook($idBook)

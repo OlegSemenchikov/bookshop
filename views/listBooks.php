@@ -23,7 +23,10 @@ try {
         foreach ($data as $item): if (!is_array($item)){break;}?>
             <div>
                 <span><?= ++$i; ?></span>
-                <span><?= $item['title']; ?></span>
+                <span>"<?= $item['title']; ?>"</span>
+                <span><?= (isset($item['pages'])&&($item['pages'] != ""))?("| Количество страниц: ".$item['pages']):''; ?></span>
+                <span><?= (isset($item['year'])&&($item['year'] != ""))?("| Год издания: ".$item['year']):''; ?></span>
+                <span><?= (isset($item['price'])&&($item['price'] != ""))?("| Цена: ".$item['price']):''; ?></span>
                 <form action='/book/edit' method='POST'>
                     <input type='hidden' name='id' value='<?= $item['id_book']; ?>'>
                     <p>

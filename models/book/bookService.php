@@ -19,7 +19,7 @@ class bookService
 
     public function createNewBook(Book $objB)
     {
-        $idNewBook = $this->bookAdp->addBook($objB->getTitle());
+        $idNewBook = $this->bookAdp->addBook($objB->getTitle(), $objB->getPages(), $objB->getYear(), $objB->getPrice());
 
         return $idNewBook;
     }
