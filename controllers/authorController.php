@@ -10,19 +10,19 @@ class authorController
 {
     public function actionAll()
     {
-        $this->objAuthor= new Author();
-        $this->authorSer= new authorService();
-        $data = $this->authorSer->showAllAuthors();
+        $objAuthor= new Author();
+        $authorSer= new authorService();
+        $data = $authorSer->showAllAuthors();
 
         foreach ($data as $key => $value){
-            $this->objAuthor->setId($value['id_author']);
+            $objAuthor->setId($value['id_author']);
 
             //количество книг
-//            $countBooks = $this->authorSer->showCountBooksAuthor($this->objAuthor);
+//            $countBooks = $authorSer->showCountBooksAuthor($objAuthor);
 //            $value += ['countBooks'=>$countBooks];
 
             //информация по книгам конкретного автора
-            $arrBooks = $this->authorSer->showBooksAuthor($this->objAuthor);
+            $arrBooks = $authorSer->showBooksAuthor($objAuthor);
             $value += ['arrBooks'=>$arrBooks];
 
             $data[$key] = $value;
@@ -46,14 +46,14 @@ class authorController
         $data = [];
         if(isset($_POST['surname'])&&($_POST['surname'] != '')) {
 
-            $this->objAuthor= new Author();
-            $this->authorSer= new authorService();
+            $objAuthor= new Author();
+            $authorSer= new authorService();
 
-            $this->objAuthor->setSurname($_POST['surname']);
-            $this->objAuthor->setName($_POST['name']);
-            $this->objAuthor->setPatronymic($_POST['patronymic']);
+            $objAuthor->setSurname($_POST['surname']);
+            $objAuthor->setName($_POST['name']);
+            $objAuthor->setPatronymic($_POST['patronymic']);
 
-            $data["id"] = $this->authorSer->createNewAuthor($this->objAuthor);
+            $data["id"] = $authorSer->createNewAuthor($objAuthor);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Автор успешно добавлен.";

@@ -62,9 +62,7 @@ class Book
 
     public function setArrAuthors(array $arrObjAuthors)
     {
-        foreach ($arrObjAuthors as $key => $objAuthor){
-            $this->arrAuthors[$key] = $objAuthor;
-        }
+            $this->arrAuthors = $arrObjAuthors;
     }
 
     public function getArrAuthors()

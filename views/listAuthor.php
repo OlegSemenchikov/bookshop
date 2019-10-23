@@ -18,7 +18,15 @@ try {
                 <span><?= $item['surname']; ?></span>
                 <span><?= $item['name']; ?></span>
                 <span><?= $item['patronymic']; ?></span>
-                <span>| Количество книг в магазине: <?= (isset($item['countBooks']))?($item['countBooks']):'0'; ?></span>
+
+                <?php if(isset($item['arrBooks'])){
+                    $n = count($item['arrBooks']); ?>
+                        <ol>Количество книг в магазине: <?= $n;?>
+                            <?php foreach ($item['arrBooks'] as $val){ ?>
+                                <li><?= '"'.$val['title'].'"';?><?php if(isset($val['year'])){ echo " | Год издания: ".$val['year'];}?></li>
+                            <? } ?>
+                        </ol>
+                    <?php } ;?>
 
             </div>
 

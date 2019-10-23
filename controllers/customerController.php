@@ -10,8 +10,8 @@ class customerController
 {
     public function actionAll()
     {
-        $this->customerSer= new customerService();
-        $data = $this->customerSer->showAllCustomers();
+        $customerSer= new customerService();
+        $data = $customerSer->showAllCustomers();
 
         try {
             View::render('listCustomer', [
@@ -28,12 +28,12 @@ class customerController
         $data = [];
         if(isset($_POST['name'])&&($_POST['name'] != '')) {
 
-            $this->objCustomer= new Customer();
-            $this->customerSer= new customerService();
+            $objCustomer= new Customer();
+            $customerSer= new customerService();
 
             $name = $_POST['name'];
-            $this->objCustomer->setName($name);
-            $data["id"] = $this->customerSer->createNewCustomer($this->objCustomer);
+            $objCustomer->setName($name);
+            $data["id"] = $customerSer->createNewCustomer($objCustomer);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Покупатель успешно добавлен.";

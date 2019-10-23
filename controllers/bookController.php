@@ -11,13 +11,13 @@ class bookController
 {
     public function actionAll()
     {
-        $this->objBook= new Book();
-        $this->bookSer= new bookService();
-        $data = $this->bookSer->showAllBooks();
+        $objBook= new Book();
+        $bookSer= new bookService();
+        $data = $bookSer->showAllBooks();
 
         foreach ($data as $key => $value){
-            $this->objBook->setId($value['id_book']);
-            $arrAuth = $this->bookSer->showAuthorsBook($this->objBook);
+            $objBook->setId($value['id_book']);
+            $arrAuth = $bookSer->showAuthorsBook($objBook);
             $value += ['arrAuth'=>$arrAuth];
             $data[$key] = $value;
         }
@@ -36,12 +36,12 @@ class bookController
     {
         if(isset($_POST['id'])&&($_POST['id'] != '')) {
             $data = [];
-            $this->objBook= new Book();
-            $this->bookSer= new bookService();
+            $objBook= new Book();
+            $bookSer= new bookService();
 
             $idBook = $_POST['id'];
-            $this->objBook->setId($idBook);
-            $data = $this->bookSer->editBook($this->objBook);
+            $objBook->setId($idBook);
+            $data = $bookSer->editBook($objBook);
             try {
                 View::render('editBook', [
                     'data' => $data,
@@ -60,23 +60,23 @@ class bookController
         $data = [];
         if(isset($_POST['title'])&&($_POST['title'] != '')) {
 
-            $this->objBook= new Book();
-            $this->bookSer= new bookService();
+            $objBook= new Book();
+            $bookSer= new bookService();
 
-            $this->objBook->setId($_POST['id']);
-            $this->objBook->setTitle($_POST['title']);
-            $this->objBook->setPages($_POST['pages']);
-            $this->objBook->setYear($_POST['year']);
-            $this->objBook->setPrice($_POST['price']);
+            $objBook->setId($_POST['id']);
+            $objBook->setTitle($_POST['title']);
+            $objBook->setPages($_POST['pages']);
+            $objBook->setYear($_POST['year']);
+            $objBook->setPrice($_POST['price']);
 
-            $data["idBook"] = $this->bookSer->saveBook($this->objBook);
+            $data["idBook"] = $bookSer->saveBook($objBook);
 
             if(isset($data["idBook"])&&($data["idBook"] > 0)){
-                $data = $this->bookSer->showAllBooks();
+                $data = $bookSer->showAllBooks();
 
                 foreach ($data as $key => $value){
-                    $this->objBook->setId($value['id_book']);
-                    $arrAuth = $this->bookSer->showAuthorsBook( $this->objBook);
+                    $objBook->setId($value['id_book']);
+                    $arrAuth = $bookSer->showAuthorsBook( $objBook);
                     $value += ['arrAuth'=>$arrAuth];
                     $data[$key] = $value;
                 }
@@ -119,15 +119,15 @@ class bookController
         $data = [];
         if(isset($_POST['title'])&&($_POST['title'] != '')) {
 
-            $this->objBook= new Book();
-            $this->bookSer= new bookService();
+            $objBook= new Book();
+            $bookSer= new bookService();
 
             $title = $_POST['title'];
-            $this->objBook->setTitle($title);
-            $this->objBook->setPages($_POST['pages']);
-            $this->objBook->setYear($_POST['year']);
-            $this->objBook->setPrice($_POST['price']);
-            $data["id"] = $this->bookSer->createNewBook($this->objBook);
+            $objBook->setTitle($title);
+            $objBook->setPages($_POST['pages']);
+            $objBook->setYear($_POST['year']);
+            $objBook->setPrice($_POST['price']);
+            $data["id"] = $bookSer->createNewBook($objBook);
 
             if(isset($data["id"])&&($data["id"] > 0)){
                 $data["messageSuccess"] = "Книга успешно добавлена.";
