@@ -4,6 +4,7 @@ namespace Models\Customer;
 
 class Customer
 {
+    protected $idCustomer;
     protected $surname;
     protected $name;
     protected $patronymic;
@@ -13,12 +14,12 @@ class Customer
 
     public function setId($str)
     {
-        $this->id = $str;
+        $this->idCustomer = $str;
     }
 
     public function getId()
     {
-        return $this->id ;
+        return $this->idCustomer ;
     }
 
     public function setName($str)
@@ -69,5 +70,18 @@ class Customer
     public function getArrBooks()
     {
         return $this->arrBooks ;
+    }
+
+    public function getCustomer()
+    {
+        $Customer = array('idCustomer' => $this->getId(),
+                          'surname' => $this->getSurname(),
+                          'name' => $this->getName(),
+                          'patronymic' => $this->getPatronymic(),
+                          'phone' => $this->getPhone(),
+                          'arrBooks' => $this->getArrBooks(),
+                          );
+
+        return $Customer ;
     }
 }

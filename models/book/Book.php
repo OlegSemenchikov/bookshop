@@ -3,7 +3,7 @@ namespace Models\Book;
 
 class Book
 {
-    protected $id;
+    protected $idBook;
     protected $title;
     protected $pages;
     protected $year;
@@ -12,12 +12,12 @@ class Book
 
     public function setId($str)
     {
-        $this->id = $str;
+        $this->idBook = $str;
     }
 
     public function getId()
     {
-        return $this->id ;
+        return $this->idBook ;
     }
 
     public function setTitle($str)

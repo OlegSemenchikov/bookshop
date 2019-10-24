@@ -14,8 +14,17 @@ try {
 <?php }?>
 
 <form action='/customer/create' method='POST'>
-    <p>ФИО атора книги:<br />
+    <p>Фамилия покупателя:<br />
+        <input type='text' name='surname' style='width:420px;'>
+    </p>
+    <p>Имя покупателя:<br />
         <input type='text' name='name' style='width:420px;'>
+    </p>
+    <p>Отчество покупателя:<br />
+        <input type='text' name='patronymic' style='width:420px;'>
+    </p>
+    <p>Телефон покупателя:<br />
+        <input type='text' name='phone' style='width:420px;'>
     </p>
     <p>
         <input type='submit' name='button' value='Добавить'>

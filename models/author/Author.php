@@ -3,18 +3,19 @@ namespace Models\Author;
 
 class Author
 {
+    protected $idAuthor;
     protected $surname;
     protected $name;
     protected $patronymic;
 
     public function setId($str)
     {
-        $this->id = $str;
+        $this->idAuthor = $str;
     }
 
     public function getId()
     {
-        return $this->id ;
+        return $this->idAuthor ;
     }
 
     public function setName($str)
