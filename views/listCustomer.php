@@ -15,9 +15,17 @@ try {
         foreach ($data as $item): ?>
             <div>
                 <span><?= ++$i; ?></span>
-                <span><?= $item['surname']; ?></span>
-                <span><?= $item['name']; ?></span>
-                <span><?= $item['patronymic']; ?></span>
+                <?php foreach ($item as $k=>$v){
+                    if($k == 'id_customer'){ continue;}
+                        if(isset($v)&&($v != "")){?>
+                        <span><?= ((($k == 'phone')&&($v != ""))?('тел.:'):'').$v; ?></span>
+                <?php } }?>
+                <form action='/customer/info' method='POST'>
+                    <input type='hidden' name='id' value='<?= $item['id_customer']; ?>'>
+                    <p>
+                        <input type='submit' name='button' value='Подробнее'>
+                    </p>
+                </form>
             </div>
 
             <br/>

@@ -8,6 +8,8 @@ class Customer
     protected $name;
     protected $patronymic;
     protected $phone;
+    protected $arrBooks;
+
 
     public function setId($str)
     {
@@ -57,5 +59,15 @@ class Customer
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    public function setArrBooks(array $arrObjBooks)
+    {
+        $this->arrBooks = $arrObjBooks;
+    }
+
+    public function getArrBooks()
+    {
+        return $this->arrBooks ;
     }
 }

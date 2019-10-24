@@ -23,4 +23,13 @@ class customerService
 
         return $idNewCustomer;
     }
+
+    public function showCustomer(Customer $objC)
+    {
+        $infoCustomer = $this->customerAdp->selectInfoCustomer($objC->getId());
+
+        $infoCustomer['booksCustomer'] = $this->customerAdp->selectBooksCustomer($objC->getId());
+
+        return $infoCustomer;
+    }
 }

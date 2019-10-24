@@ -20,10 +20,10 @@ try {
     <?php if(count($data)>0){
 
         $i = 0;
-        foreach ($data as $item): if (!is_array($item)){break;}?>
+        foreach ($data as $item): if (!is_array($item)){continue;}?>
             <div>
                 <span><?= ++$i; ?></span>
-                <span>"<?= $item['title']; ?>"</span>
+                <span>"<?= (isset($item['title'])&&($item['title'] != ""))?($item['title']):''; ?>"</span>
                 <span><?= (isset($item['pages'])&&($item['pages'] != ""))?("| Количество страниц: ".$item['pages']):''; ?></span>
                 <span><?= (isset($item['year'])&&($item['year'] != ""))?("| Год издания: ".$item['year']):''; ?></span>
                 <span><?= (isset($item['price'])&&($item['price'] != ""))?("| Цена: ".$item['price']):''; ?></span>

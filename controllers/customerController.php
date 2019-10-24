@@ -52,4 +52,18 @@ class customerController
         }
 
     }
+
+    public function actionInfo()
+    {
+        if(isset($_POST['id'])&&($_POST['id'] != '')) {
+            $objCustomer = new Customer();
+            $customerSer = new customerService();
+            $objCustomer->setId($_POST['id']);
+            $infoCustomer = $customerSer->showCustomer($objCustomer);
+            echo json_encode($infoCustomer);
+//            debug($infoCustomer);
+        } else{
+            echo 'Неверный id покупателя.';
+        }
+    }
 }
